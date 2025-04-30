@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  currency-database:
+    build: ./currencyDatabase
+    container_name: currency-database
+    restart: unless-stopped
+    volumes:
+      - h2data:/h2data
+    environment:
+      - LANG=C.UTF-8
+
+  currency-loader:
+    build: ./currencyLoader
+    container_name: currency-loader
+    restart: unless-stopped
+    volumes:
+      - h2data:/h2data
+    environment:
+      - LANG=C.UTF-8
+    depends_on:
+      - currency-database
+
+  currency-api:
+    build: ./currencyApi
+    container_name: currency-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - h2data:/h2data
+    environment:
+      - LANG=C.UTF-8
+    depends_on:
+      - currency-database
+
+  currency-web:
+    build: ./currencyWeb
+    container_name: currency-web
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - h2data:/h2data
+    environment:
+      - LANG=C.UTF-8
+    depends_on:
+      - currency-api
+
+volumes:
+  h2data: 
