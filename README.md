@@ -58,7 +58,7 @@
 ---
 
 ## Схема взаимодействия микросервисов
-
+```
              +--------------------+
              | currencyDatabase   |<-----------+
              +--------------------+            |
@@ -76,7 +76,7 @@
                           +---------------+  |
                           | currencyLoader|--+
                           +---------------+
-
+```
 
 ## Особенности проекта
 
@@ -87,6 +87,7 @@
 
 
 ## Структура проекта
+```
 currency-project/
 ├── README.md
 ├── pom.xml
@@ -109,8 +110,6 @@ currencyCommon/									                  # Общие классы: DTO, пар
         ├── DbUtils.java
         ├── FileParsing.java
         └── FileUtils.java
-
-
 
 ├── currencyLoader/                             # Микросервис загрузки и обновления данных
 │   ├── pom.xml
@@ -137,7 +136,6 @@ currencyCommon/									                  # Общие классы: DTO, пар
 │       └── dto/
 │           └── CurrencyRateDTO.java            # Внутреннее DTO
 
-
 ├── currencyDatabase/                           # Микросервис для инициализации и миграций
 │   ├── pom.xml
 │   ├── src/main/java/database/ 
@@ -146,7 +144,7 @@ currencyCommon/									                  # Общие классы: DTO, пар
 │   └── src/main/resources/
 │               ├── config.properties
 │               └── ddl.sql
-
+```
 
 #### Инструкции по запуску
 ## Как запустить
